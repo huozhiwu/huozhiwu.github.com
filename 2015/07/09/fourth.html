@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/static/css/base.css" media="screen" />
+<script src="/static/bootstrap/js/jquery.min.js"></script>
+
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<title>设计模式之策略模式讲解</title>
+</head>
+<body>
+<div class="container main">
+		<h1>设计模式之策略模式讲解</h1>
+<p><h3>策略模式</h3>又叫算法簇模式，就是定义了不同的算法簇，并且之间可以相互替换，这种模式让算法的变化独立于使用算法的客户。</p>
+
+<p><h3>背景：</h3>日常开发中我们会遇到类似地情况，实现某一个功能有多种算法，我们需要根据环境或者条件的不同来选择不同的算法和策略来完成。比如说查找，排序等等。一种常见的方法是硬编码(hrad coding)。在一个类中，如果需要提供多种查找算法，可以将算法写到一个类中，然后每个方法对应一种算法，或者直接通过if else 或者switch 来进行选择。这种硬编码的方法维护成本比较高，如果需要添加新的算法，需要修改封装算法类的源码。</p>
+<p><h3>解决方案：</h3>定义一系列的算法，把每个算法都封装起来，并且使他们可以相互替换。使得算法可独立于使用它的客户而变化。</p>
+
+<p><h4>下面就用一个网上看到的示例来讲解一下：</h4>
+	出行旅游：我们可以有几个策略可以考虑：可以骑自行车，汽车，做火车，飞机。每个策略都可以得到相同的结果，但是它们使用了不同的资源。选择策略的依据是费用，时间，使用工具还有每种方式的方便程度 。
+	<br><br>
+	<img src="/static/images/4a.png">
+</p>
+<p>
+<h3>看代码：</h3>
+<pre>
+<?php
+/** 
+* 策略模式 
+* 定义一系列的算法,把每一个算法封装起来, 并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化 
+* 
+*/
+
+/**
+ * 出行旅游
+ */
+interface TravelStrategy{
+	public function TravelAlgorithm{}
+}
+/**
+ * 具体策略类 1 乘坐飞机
+ */
+class AirPlaneStrategy implements TravelStrategy{
+	public function TravelAlgorithm{
+		echo 'Travel by AirPlane';
+	}
+}
+/**
+ * 具体策略类 2 乘坐火车
+ */
+class TrainStrategy implements TravelStrategy{
+	public function TravelAlgorithm{
+		echo 'Travel by Train';
+	}
+}
+/**
+ * 具体策略类 3 骑自形车
+ */
+class BicycleStrategy implements TravelStrategy{
+	public function TravelAlgorithm{
+		echo 'Travel by Bicycle';
+	}
+}
+
+class PersonContext{
+	private $_strategy = null;
+
+	public function __construct(TravelStrategy $travel){
+		$this->$_strategy = $travel;
+	}
+
+	public function setTravelStrategy(TravelStrategy $travel){
+		$this->$_strategy = $travel;
+	}
+
+	public function travel(){
+		return $this->$_strategy->TravelAlgorithm();
+	}
+}
+
+//实例代码 乘火车旅行
+$person = new PersonContext(new TrainStrategy());
+$person->travel();
+
+//改骑自行车
+$person->setTravelStrategy(new BicycleStrategy());
+$person->travel();
+?>
+</pre>
+</p>
+
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'huozhiwu';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?62686fde67a00d8e56cb1b14a7329ddd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>
