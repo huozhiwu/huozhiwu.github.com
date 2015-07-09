@@ -26,7 +26,7 @@
 <p>
 <h3>看代码：</h3>
 <pre>
-<?php
+//php代码
 /** 
 * 策略模式 
 * 定义一系列的算法,把每一个算法封装起来, 并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化 
@@ -39,6 +39,7 @@
 interface TravelStrategy{
 	public function TravelAlgorithm{}
 }
+
 /**
  * 具体策略类 1 乘坐飞机
  */
@@ -47,6 +48,7 @@ class AirPlaneStrategy implements TravelStrategy{
 		echo 'Travel by AirPlane';
 	}
 }
+
 /**
  * 具体策略类 2 乘坐火车
  */
@@ -55,6 +57,7 @@ class TrainStrategy implements TravelStrategy{
 		echo 'Travel by Train';
 	}
 }
+
 /**
  * 具体策略类 3 骑自形车
  */
@@ -87,7 +90,7 @@ $person->travel();
 //改骑自行车
 $person->setTravelStrategy(new BicycleStrategy());
 $person->travel();
-?>
+
 </pre>
 </p>
 
