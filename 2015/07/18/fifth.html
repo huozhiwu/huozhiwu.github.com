@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/static/css/base.css" media="screen" />
+<script src="/static/bootstrap/js/jquery.min.js"></script>
+
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<title>面向对象设计的五大原则</title>
+</head>
+<body>
+<div class="container main">
+		<h1>面向对象设计的五大原则</h1>
+<p>
+简单记录一下设计模式的五大原则。
+</p>
+<p><h3>1.单一职责原则（SRP Single Persponsibility Principle）</h3>
+	在《敏捷软件开发》中，把“职责”定义为“变化的原因”，也就是说，就一个类而言，应该只有一个引起它变化的原因。说的简单一点，就是怎样设计类以及类的方法界定的问题。这个问题是普遍存在的，比如说在MVC框架中，很多人会有这样地疑惑，对于表单插入数据库字段过滤与安全检查应该是放在control层处理还是model层处理，这类问题都可以归到单一职责的范围。<br>
+	单一职责原则有两个含义：一个是避免相同职责分散到不同的类中，另一个是避免一个类承担太多职责。<br>
+	简单来说，各司其职，不相互推诿，为避免某人权力过大，则需要分权并且划分职责。
+</p>
+
+<p><h3>2.接口隔离原则（ISP Interface Segregation Principle）</h3>
+接口隔离原则表明客户端不应该被强迫实现一些他们不会使用的接口，应该把胖接口中的方法分组，然后用多个接口代替。每个接口服务于不同的子模块。<br>
+过于臃肿的接口设计是对接口的污染。所谓接口污染就是为接口添加不必要地职责，如果开发人员在接口增加一个新功能的主要目的只是为了减少接口实现类的数目，则此设计将导致接口被不断的“污染”并“变胖”。
+</p>
+<p><h3>3.开放-封闭原则（OCP Open-Close Principle）</h3>
+	开放封闭原则大意就是要求开发人员在不修改系统中现有功能代码（源代码或者二进制代码）的前提下，实现对应用系统的软件功能扩展。
+</p>
+<p><h3>4.里氏替换原则（LSP Liskov Subsitution Principle）</h3>
+里氏替换原则指出，子类型必须能够替换掉他们的父类型，并出现在父类能够出现的任何地方。LSP主要是针对继承的设计原则。
+</p>
+<p><h3>5.依赖倒置原则（DIP Dependence Inversion Principle）</h3>
+1.上层模块不应该依赖于下层模块，他们共同依赖于一个抽象（父类不能依赖子类，他们都要依赖抽象类）。<br>
+2.抽象不能依赖于具体，具体应该要依赖于抽象。
+</p>
+
+
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'huozhiwu';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?62686fde67a00d8e56cb1b14a7329ddd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>
