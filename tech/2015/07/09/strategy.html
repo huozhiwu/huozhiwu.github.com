@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>设计模式之策略模式讲解</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="不着一相">
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/css/hc.css" rel="stylesheet">
+<link href="/static/css/font-awesome.css" rel="stylesheet">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif] d-->
+
+  </head>
+  <body>
+    <div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Herring Cove </div>
+    <div id = "wrapper">
+      <div class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <p class="navbar-brand">火之舞的blog</p>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+      <li><a href="/tech.html">技术栈</a></li>
+      <li><a href="/links.html">读书</a></li>
+      <li><a href="/projects.html">生活感悟</a></li>
+      <li><a href="/about.html">About</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand"><a href="/"><h1 class="brand">火之舞</h1></a><h3>不着一相</h3></li>
+    <hr />
+    <li><a href="/tech.html">技术栈</a></li>
+    <li><a href="/read.html">读书</a></li>
+    <li><a href="/life.html">生活感悟</a></li>
+    <li><a href="/about.html">关于我</a></li>
+    <hr />
+    <div id="social-wrapper">
+      <li> <a href="http://www.twitter.com/"><i class="fa fa-twitter-square"></i> @twitter</a></li>
+      <li> <a href="http://www.linkedin.com"><i class="fa fa-linkedin-square"></i> linkedin</a> </li>
+      <li> <a href="http://www.facebook.com"><i class="fa fa-facebook-square"></i> facebook</a></li>
+      <li> <a href="http://www.github.com/huozhiwu"><i class="fa fa-github-square"></i> github</a> </li>
+    </div>
+  </ul>
+</div>
+
+      <div class="container">
+        <div id="article">
+  <div class="article-title">设计模式之策略模式讲解</div>
+  <p class="meta">
+    <small>
+      &nbsp;<i class="fa fa-calendar-o"></i> 09 Jul 2015
+    </small>
+  </p> <hr/>
+  <div class="post">
+    <h3>策略模式:</h3>
+
+<p>又叫算法簇模式，就是定义了不同的算法簇，并且之间可以相互替换，这种模式让算法的变化独立于使用算法的客户。</p>
+
+<h3>背景：</h3>
+
+<p>日常开发中我们会遇到类似地情况，实现某一个功能有多种算法，我们需要根据环境或者条件的不同来选择不同的算法和策略来完成。比如说查找，排序等等。一种常见的方法是硬编码(hrad coding)。在一个类中，如果需要提供多种查找算法，可以将算法写到一个类中，然后每个方法对应一种算法，或者直接通过if else 或者switch 来进行选择。这种硬编码的方法维护成本比较高，如果需要添加新的算法，需要修改封装算法类的源码。</p>
+
+<h3>解决方案：</h3>
+
+<p>定义一系列的算法，把每个算法都封装起来，并且使他们可以相互替换。使得算法可独立于使用它的客户而变化。</p>
+
+<h4>下面就用一个网上看到的示例来讲解一下：</h4>
+
+<p>出行旅游：我们可以有几个策略可以考虑：可以骑自行车，汽车，做火车，飞机。每个策略都可以得到相同的结果，但是它们使用了不同的资源。选择策略的依据是费用，时间，使用工具还有每种方式的方便程度 。</p>
+
+<p><img src="/static/images/4a.png" alt="Image">  </p>
+
+<h3>看代码：</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">//php代码
+/** 
+* 策略模式 
+* 定义一系列的算法,把每一个算法封装起来, 并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化 
+* 
+*/
+
+/**
+ * 出行旅游
+ */
+interface TravelStrategy{
+    public function TravelAlgorithm{}
+}
+
+/**
+ * 具体策略类 1 乘坐飞机
+ */
+class AirPlaneStrategy implements TravelStrategy{
+    public function TravelAlgorithm{
+        echo &#39;Travel by AirPlane&#39;;
+    }
+}
+
+/**
+ * 具体策略类 2 乘坐火车
+ */
+class TrainStrategy implements TravelStrategy{
+    public function TravelAlgorithm{
+        echo &#39;Travel by Train&#39;;
+    }
+}
+
+/**
+ * 具体策略类 3 骑自形车
+ */
+class BicycleStrategy implements TravelStrategy{
+    public function TravelAlgorithm{
+        echo &#39;Travel by Bicycle&#39;;
+    }
+}
+
+class PersonContext{
+    private $_strategy = null;
+
+    public function __construct(TravelStrategy $travel){
+        $this-&gt;$_strategy = $travel;
+    }
+
+    public function setTravelStrategy(TravelStrategy $travel){
+        $this-&gt;$_strategy = $travel;
+    }
+
+    public function travel(){
+        return $this-&gt;$_strategy-&gt;TravelAlgorithm();
+    }
+}
+
+//实例代码 乘火车旅行
+$person = new PersonContext(new TrainStrategy());
+$person-&gt;travel();
+
+//改骑自行车
+$person-&gt;setTravelStrategy(new BicycleStrategy());
+$person-&gt;travel();
+</code></pre></div>
+  </div>
+</div>
+<ul class="pager">
+
+  <li class="previous"><a href="/tech/2015/06/23/git-small-trick.html">&larr; 前一篇</a></li>
+
+
+  <li class="next"><a href="/tech/2015/07/18/creational-patterns.html">后一篇 &rarr;</a></li>
+
+</ul>
+
+<div id="disqus_thread">
+
+  <script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'huozhiwu'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by <span class="logo-disqus">Disqus</span>
+  </a>
+
+</div>
+
+
+      </div>
+      <div class="container">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?62686fde67a00d8e56cb1b14a7329ddd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  <footer>
+    <p class="text-muted credit">
+      &copy; 2016 火之舞的blog &middot;
+      <a href="https://github.com/arnp/herring-cove"> Herring Cove for Jekyll </a>
+      2016-06-26 20:16:29 +0800
+    </p>
+  </footer>
+</div>
+
+    </div>
+    <!-- Bootstrap core JavaScript-->
+<script src="/static/js/jquery-1.10.2.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/hc.js"></script>
+
+  </body>
+</html>

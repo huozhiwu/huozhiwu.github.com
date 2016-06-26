@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>火之舞的博客</title>
+<title>javascript 中的keys 和 forEach 使用</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="不着一相">
 <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -59,115 +59,86 @@
 </div>
 
       <div class="container">
-            </div>
-    <style>
-    .showcase-wrapper {background-image: url("/static/images/showcase.jpg");}
-    </style>
-    <div class="showcase-wrapper sticky">
-      <div class="showcase-text">
-          
-          <span class="badge lazy"><smaller>FRESHLY MINTED</smaller></span><br>生活随想<br><a href="/life/2016/06/21/life.html"><button type="button" class="btn btn-default showcase-button">Read More</button></a>
-          
-      </div>
-    </div>
-    <div class="container">
+        <div id="article">
+  <div class="article-title">javascript 中的keys 和 forEach 使用</div>
+  <p class="meta">
+    <small>
+      &nbsp;<i class="fa fa-calendar-o"></i> 22 Jun 2015
+    </small>
+  </p> <hr/>
+  <div class="post">
+    <p>近日因为工作写了些node.js的东西，本来以为自己的js功底还可以，可在开发中发现原来很多js的语法竟然不会。不得不说，之前jquery已经把我惯坏了，导致自己没有深入地去研究js原生语言的一些语法。</p>
+
+<h4>下面就介绍两个方法：</h4>
+
+<p>第一个方法是keys:</p>
+
+<ul>
+<li>语法：<code>Object.keys(obj)</code></li>
+<li>参数：obj 返回该对象的所有可枚举自身属性的属性名。</li>
+</ul>
+
+<p>不啰嗦，上代码：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">var o = {name:&#39;xxx&#39;, url:&#39;http://huozhiwu.github.io&#39;};
+alert(Object.keys(o)); //弹出 name url
+</code></pre></div>
+<p>第二个方法是forEach:</p>
+
+<ul>
+<li>语法：<code>array.forEach(callback[, thisArg])</code></li>
+<li>参数：<strong>callback</strong><br>
+在数组每一项上执行的函数，接收三个参数：<br>
+<strong>currentValue</strong><br>
+当前项（指遍历时正在被处理那个数组项）的值。<br>
+<strong>index</strong><br>
+当前项的索引（或下标）。<br>
+<strong>array</strong><br>
+数组本身。<br>
+<strong>thisArg</strong><br>
+可选参数。用来当作callback 函数内this的值的对象。</li>
+</ul>
+
+<p>代码如下：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">var o = {name:&#39;xxx&#39;, url:&#39;http://huozhiwu.github.io&#39;};
+
+Object.keys(o).forEach(function(k){
+    console.log(k+&#39;:&#39;+&#39;&quot;&#39;+o[k]+&#39;&quot;&#39;);
+}) //name:&quot;xxx&quot; url:&quot;http://huozhiwu.github.io&quot; 
+</code></pre></div>
+<p>介绍完毕。</p>
 
   </div>
-  <div class="container">
-    <div id="welcome-greeting">
-      <h1>The words</h1>
-      <h2>What hurts more,the pain of hard work or the pain of regret?</h2>
-      <hr />
-    </div>
-  </div>
-  <div class ="container">
+</div>
+<ul class="pager">
+
+  <li class="previous"><a href="/tech/2015/05/12/symfony-generate-curd.html">&larr; 前一篇</a></li>
 
 
+  <li class="next"><a href="/tech/2015/06/23/git-small-trick.html">后一篇 &rarr;</a></li>
 
-<div class="recent-posts">
-  <h1>最新文章</h1>
-  
-    
-    <ul class="homepage-posts most-recent">
-      <li>
-        <span>
-          <h4>
-            <a href="/life/2016/06/21/life.html">
-              生活随想
-            </a>
-            
-        &nbsp;<span class="badge"><smaller>FRESH</smaller></span>
-      
-            <time class="pull-right">
-              Jun 21, 2016
-            </time>
-          </h4>
-        </span>
-      </li>
-    </ul>
-    
-    
-  
-    
-    <ul class="homepage-posts ">
-      <li>
-        <span>
-          <h4>
-            <a href="/tech/2015/07/18/creational-patterns.html">
-              面向对象设计的五大原则
-            </a>
-            
-            <time class="pull-right">
-              Jul 18, 2015
-            </time>
-          </h4>
-        </span>
-      </li>
-    </ul>
-    
-    
-  
-    
-    <ul class="homepage-posts ">
-      <li>
-        <span>
-          <h4>
-            <a href="/tech/2015/07/09/strategy.html">
-              设计模式之策略模式讲解
-            </a>
-            
-            <time class="pull-right">
-              Jul 9, 2015
-            </time>
-          </h4>
-        </span>
-      </li>
-    </ul>
-    
-    
-  
-    
-    <ul class="homepage-posts ">
-      <li>
-        <span>
-          <h4>
-            <a href="/tech/2015/06/23/git-small-trick.html">
-              git的一些小技巧
-            </a>
-            
-            <time class="pull-right">
-              Jun 23, 2015
-            </time>
-          </h4>
-        </span>
-      </li>
-    </ul>
-    
-    
-  
-  <ul>
-    <a href="list.html">查看更多</a>
-  </ul>
+</ul>
+
+<div id="disqus_thread">
+
+  <script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'huozhiwu'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by <span class="logo-disqus">Disqus</span>
+  </a>
+
 </div>
 
 
