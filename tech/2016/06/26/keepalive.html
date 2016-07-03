@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>面向对象设计的五大原则</title>
+<title>tcp的keepalive和http的keepalive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="不着一相">
 <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -58,42 +58,49 @@
 
       <div class="container">
         <div id="article">
-  <div class="article-title">面向对象设计的五大原则</div>
+  <div class="article-title">tcp的keepalive和http的keepalive</div>
   <p class="meta">
     <small>
-      &nbsp;<i class="fa fa-calendar-o"></i> 18 Jul 2015
+      &nbsp;<i class="fa fa-calendar-o"></i> 26 Jun 2016
     </small>
   </p> <hr/>
   <div class="post">
-    <h2>简单记录一下设计模式的五大原则。</h2>
+    <h3>前言</h3>
 
-<h3>1.单一职责原则（<code>SRP Single Persponsibility Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">在《敏捷软件开发》中，把“职责”定义为“变化的原因”，也就是说，就一个类而言，应该只有一个引起它变化的原因。说的简单一点，就是怎样设计类以及类的方法界定的问题。这个问题是普遍存在的，比如说在MVC框架中，很多人会有这样地疑惑，对于表单插入数据库字段过滤与安全检查应该是放在control层处理还是model层处理，这类问题都可以归到单一职责的范围。  
-单一职责原则有两个含义：一个是避免相同职责分散到不同的类中，另一个是避免一个类承担太多职责。  
-简单来说，各司其职，不相互推诿，为避免某人权力过大，则需要分权并且划分职责。  
+<p>今天，在看服务器性能调优的时候看到修改Linux内核参数的时候，修改<code>/etc/sysctl.conf</code>来更改内核参数，其中有个<code>net.ipv4.tcp_keepalive_time=600</code>，忽然想到在http协议中也存在一个keepalive配置，那这两个配置有什么关系呢？  </p>
+
+<h3>http的keep-alive</h3>
+
+<p>首先，说一下http协议中的keepalive,其实应该是keep-alive,如图<br>
+<img src="/static/images/life/20160627.png" alt="Image">  </p>
+
+<p>在http早期，每个http请求都要求打开一个tpc socket连接，并且使用一次之后就断开这个tcp连接。这样就会增加许多的tcp开销，因为要不停的握手，挥手。<br>
+然后呢，就有了http的keep-alive，通过使用keep-alive机制，可以减少tcp连接建立的次数，从而减少TIME<em>WAIT状态连接，以此提高了性能和httpd服务器的吞吐率（更少的tcp连接意味着更少的系统内核调用，socket的accept()和close()调用）。
+但是，keep-alive并不是免费的午餐,长时间的tcp连接容易导致系统资源无效占用。配置不当的keep-alive，有时比重复利用连接带来的损失还更大。所以，正确地设置 keep-alive timeout时间非常重要。<br>
+在nginx中的参数是keepalive</em>timeout，Apache中的是KeepAliveTimeout，这个keepalive<em>timout时间意味着：一个http产生的tcp连接在传送完最后一个相应，还要hold住**keepalive</em>timeout**秒后，才开始关闭这个连接。  </p>
+
+<h3>tcp的keep-alive</h3>
+
+<p>http keep-alive与tcp keep-alive，不是同一回事，意图不一样。http keep-alive是为了让tcp活得更久一点，以便在同一个连接上传送多个http，提高socket的效率。而tcp keep-alive是TCP的一种检测TCP连接状况的保鲜机制。tcp keep-alive保鲜定时器，支持三个系统内核配置参数：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">echo 1800 &gt; /proc/sys/net/ipv4/tcp_keepalive_time
+echo 15 &gt; /proc/sys/net/ipv4/tcp_keepalive_intvl
+echo 5 &gt; /proc/sys/net/ipv4/tcp_keepalive_probes
 </code></pre></div>
-<h3>2.接口隔离原则（<code>ISP Interface Segregation Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">接口隔离原则表明客户端不应该被强迫实现一些他们不会使用的接口，应该把胖接口中的方法分组，然后用多个接口代替。每个接口服务于不同的子模块。  
-过于臃肿的接口设计是对接口的污染。所谓接口污染就是为接口添加不必要地职责，如果开发人员在接口增加一个新功能的主要目的只是为了减少接口实现类的数目，则此设计将导致接口被不断的“污染”并“变胖”。
-</code></pre></div>
-<h3>3.开放-封闭原则（<code>OCP Open-Close Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">开放封闭原则大意就是要求开发人员在不修改系统中现有功能代码（源代码或者二进制代码）的前提下，实现对应用系统的软件功能扩展。
-</code></pre></div>
-<h3>4.里氏替换原则（<code>LSP Liskov Subsitution Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">里氏替换原则指出，子类型必须能够替换掉他们的父类型，并出现在父类能够出现的任何地方。LSP主要是针对继承的设计原则。
-</code></pre></div>
-<h3>5.依赖倒置原则（<code>DIP Dependence Inversion Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">1. 上层模块不应该依赖于下层模块，他们共同依赖于一个抽象（父类不能依赖子类，他们都要依赖抽象类）。  
-2. 抽象不能依赖于具体，具体应该要依赖于抽象。
-</code></pre></div>
+<p>keepalive是TCP保鲜定时器，当网络两端建立了TCP连接之后，闲置idle（双方没有任何数据流发送往来）了<strong>tcp<em>keepalive</em>time</strong>后，服务器内核就会尝试向客户端发送侦测包，来判断TCP连接状况(有可能客户端崩溃、强制关闭了应用、主机不可达等等)。如果没有收到对方的回答(ack包)，则会在 <strong>tcp<em>keepalive</em>intvl</strong> 后再次尝试发送侦测包，直到收到对对方的ack,如果一直没有收到对方的ack,一共会尝试 tcp<em>keepalive</em>probes次，每次的间隔时间在这里分别是15s, 30s, 45s, 60s, 75s。如果尝试 <strong>tcp<em>keepalive</em>probes</strong> 次，依然没有收到对方的ack包，则会丢弃该TCP连接。TCP连接默认闲置时间是2小时，一般设置为30分钟足够了。<br>
+也就是说，仅当nginx的keepalive<em>timeout值设置高于tcp</em>keepalive<em>time并且距此tcp连接传输的最后一个http响应，经过了 tcp</em>keepalive_time时间之后，操作系统才会发送侦测包来决定是否要丢弃这个TCP连接。一般不会出现这种情况，除非你需要这样做。</p>
+
+<h3>keep-alive与TIME_WAIT</h3>
+
+<p>使用http keep-alvie，可以减少服务端TIME_WAIT数量(因为由服务端httpd守护进程主动关闭连接)。道理很简单，相较而言，启用keep-alive，建立的tcp连接更少了，自然要被关闭的tcp连接也相应更少了。</p>
+
   </div>
 </div>
 <ul class="pager">
 
-  <li class="previous"><a href="/tech/2015/07/09/strategy.html">&larr; 前一篇</a></li>
+  <li class="previous"><a href="/life/2016/06/21/life.html">&larr; 前一篇</a></li>
 
 
-  <li class="next"><a href="/life/2016/06/21/life.html">后一篇 &rarr;</a></li>
+  <li class="next"><a href="/life/2016/06/27/wanning-01.html">后一篇 &rarr;</a></li>
 
 </ul>
 
