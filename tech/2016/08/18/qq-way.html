@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>git的一些小技巧</title>
+<title>《腾讯方法》</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="不着一相">
 <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -58,37 +58,20 @@
 
       <div class="container">
         <div id="article">
-  <div class="article-title">git的一些小技巧</div>
+  <div class="article-title">《腾讯方法》</div>
   <p class="meta">
     <small>
-      &nbsp;<i class="fa fa-calendar-o"></i> 23 Jun 2015
+      &nbsp;<i class="fa fa-calendar-o"></i> 18 Aug 2016
     </small>
   </p> <hr/>
   <div class="post">
-    <h4>1. 解决.gitignore无法忽略的文件以及自身被忽略的方法</h4>
-
-<p>.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。
-正确的做法是在每个clone下来的仓库中手动设置不要检查特定文件的更改情况。</p>
-
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh">git update-index --assume-unchanged PATH/FILE</code></pre></figure>
-
-<p>在PATH/FILE处输入要忽略的文件。</p>
-
-<p>但是 git checkout . 会将文件恢复。</p>
-
-<h4>2. 递归删除指定目录下的.git文件</h4>
-
-<p>递归删除指定目录下的 .git 文件， </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">find . -name .git | xargs rm -fr
-</code></pre></div>
+    
   </div>
 </div>
 <ul class="pager">
 
-  <li class="previous"><a href="/tech/2015/06/22/javascript-foreach-keys.html">&larr; 前一篇</a></li>
+  <li class="previous"><a href="/tech/2016/08/18/object-c.html">&larr; 前一篇</a></li>
 
-
-  <li class="next"><a href="/tech/2015/07/09/strategy.html">后一篇 &rarr;</a></li>
 
 </ul>
 
