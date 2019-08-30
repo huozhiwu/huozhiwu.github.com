@@ -75,7 +75,7 @@
 
 <p>在mypro目录下运行命令 <code>php app/console generate:bundle</code>
 交互的内容按照下面的格式和名称：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ php app/console generate:bundle
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ php app/console generate:bundle
 Bundle namespace: BlogBundle
 Bundle name [BlogBundle]: BlogBundle
 Target directory [/home/tcl/www/mypro/src]: /home/tcl/www/mypro/src
@@ -88,7 +88,7 @@ Do you confirm generation [yes]? yes
 <h3>3.生成实体(entity)</h3>
 
 <p>继续在mypro目录下运行命令 <code>php app/console doctrine:generate:entity</code></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ php app/console doctrine:generate:entity
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ php app/console doctrine:generate:entity
 The Entity shortcut name: BlogBundle:Blog
 Configuration format (yml, xml, php, or annotation) [annotation]: yml
 Instead of starting with a blank entity, you can add some fields now.
@@ -118,7 +118,7 @@ Generating the entity code: OK
 <p>返回： <code>Created database for connection named `DATABASENAME`</code>
 最后，继续运行命令 <code>php app/console doctrine:schema:create</code>。
 返回：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Creating database schema...
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>Creating database schema...
 Database schema created successfully!
 </code></pre></div>
 <p>这个时候在数据中已经生成了一个smyfony的数据库，并且里面有一张只包含id的Blog表。这就表示数据表创建成功了。</p>
@@ -126,7 +126,7 @@ Database schema created successfully!
 <h3>5.重新生成实体</h3>
 
 <p>首先，修改 <strong>mypro/src/BlogBundle/Resources/config/doctrine/Blog.orm.yml</strong> 如下面的代码（注意缩进）：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  BlogBundle\Entity\Blog:
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>  BlogBundle\Entity\Blog:
     type: entity
     table: null
     repositoryClass: BlogBundle\Entity\BlogRepository
@@ -149,12 +149,12 @@ Database schema created successfully!
     lifecycleCallbacks: {  }
 </code></pre></div>
 <p>然后在mypro目录下运行命令 <code>php app/console doctrine:generate:entities BlogBundle</code> ，返回：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; Generating entities for bundle &quot;BlogBundle&quot;
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>&gt; Generating entities for bundle &quot;BlogBundle&quot;
 &gt; backing up Blog.php to Blog.php~
 &gt; generating BlogBundle\Entity\Blog
 </code></pre></div>
 <p>但是这时候数据库中的字段仍然没有改变，所以继续运行命令 <code>php app/console doctrine:schema:update --force</code> ，返回：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Updating database schema...
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>Updating database schema...
 Database schema updated successfully! &quot;1&quot; queries were executed
 </code></pre></div>
 <p>这时候数据库的字段已经改变。</p>
@@ -162,7 +162,7 @@ Database schema updated successfully! &quot;1&quot; queries were executed
 <h3>6.生成curd方法</h3>
 
 <p>最后，最重要的一步来了，这步很简单了，在mypro目录下运行命令 <code>php app/console generate:doctrine:crud</code></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> Welcome to the Doctrine2 CRUD generator
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span> Welcome to the Doctrine2 CRUD generator
  The Entity shortcut name: BlogBundle:Blog
  Do you want to generate the &quot;write&quot; actions [no]? yes
  Configuration format (yml, xml, php, or annotation) [annotation]: yml

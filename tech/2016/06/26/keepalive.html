@@ -82,7 +82,7 @@
 <h3>tcp的keep-alive</h3>
 
 <p>http keep-alive与tcp keep-alive，不是同一回事，意图不一样。http keep-alive是为了让tcp活得更久一点，以便在同一个连接上传送多个http，提高socket的效率。而tcp keep-alive是TCP的一种检测TCP连接状况的保鲜机制。tcp keep-alive保鲜定时器，支持三个系统内核配置参数：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">echo 1800 &gt; /proc/sys/net/ipv4/tcp_keepalive_time
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>echo 1800 &gt; /proc/sys/net/ipv4/tcp_keepalive_time
 echo 15 &gt; /proc/sys/net/ipv4/tcp_keepalive_intvl
 echo 5 &gt; /proc/sys/net/ipv4/tcp_keepalive_probes
 </code></pre></div>
