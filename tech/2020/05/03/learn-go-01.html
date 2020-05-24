@@ -5,6 +5,7 @@
 <title>Google资深工程师深度讲解Go语言(读书笔记)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="不着一相">
+<link rel="shortcut icon " type="images/x-icon" href="/static/favicon.ico">
 <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 <link href="/static/css/hc.css" rel="stylesheet">
 <link href="/static/css/font-awesome.css" rel="stylesheet">
@@ -82,14 +83,80 @@
 
 <h3>第二章</h3>
 
-<p>go语言的变量名，名称写在前面，类型写在后面。why？先想到名字，后想到类型，同时对与混合类型有帮助。</p>
+<p>2-1 go语言的变量名，名称写在前面，类型写在后面。why？先想到名字，后想到类型，同时对与混合类型有帮助。
+函数外面声明变量必须用var关键字，变量只有包内的变量。可以用这种格式声明 </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>var (
+    aa = true
+    bb = &quot;kkkkk&quot;
+)
+</code></pre></div>
+<p>2-2 内建变量类型</p>
+
+<ol>
+<li>bool string</li>
+<li>(u)int (u)int8 (u)int16 (u)int32 (u)int64 (u)intptr</li>
+<li>byte rune</li>
+<li>float32, float64, complex32, complex64</li>
+</ol>
+
+<p>2-3 枚举类型</p>
+
+<p>​ go 没有枚举的关键字，一般都是用 const来定义</p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">const</span> <span class="p">(</span>
+    <span class="nx">cpp</span>
+    <span class="nx">java</span>
+    <span class="nx">python</span>
+    <span class="nx">javascript</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>iota的用法，从0开始递增，可以使用公式。比如说 </p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">const</span><span class="p">(</span>
+        <span class="nx">B</span> <span class="p">=</span>  <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="kc">iota</span><span class="p">)</span>
+        <span class="nx">KB</span>
+        <span class="nx">MB</span>
+        <span class="nx">GB</span>
+        <span class="nx">TB</span>
+    <span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">B</span><span class="p">,</span> <span class="nx">KB</span><span class="p">,</span> <span class="nx">MB</span><span class="p">,</span> <span class="nx">GB</span><span class="p">,</span> <span class="nx">TB</span><span class="p">)</span>
+</code></pre></div>
+<p>2-4 条件语句</p>
+
+<p>if判断，支持条件内判断。注意变量的生效区间。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>const filename = &quot;abc.txt&quot;
+    if content, err := ioutil.ReadFile(filename); err != nil{
+        fmt.Println(err)
+    }else{
+        fmt.Printf(&quot;%s&quot;, content)
+    }
+</code></pre></div>
+<p>switch 语句，case下默认是有break的，除非使用fallthrough。</p>
+
+<p><code>func eval(a, b int, op string) int{
+    var result int
+    switch op{
+        case &quot;+&quot;: result = a+b
+        case &quot;-&quot;: result = a-b
+        case &quot;*&quot;: result = a*b
+        case &quot;/&quot;: result = a/b
+        default:
+            panic(&quot;unsuport operator:&quot; + op)
+    }
+    return result
+}
+</code></p>
+
+<p>panic中断执行</p>
+
+<p>2-5循环</p>
 
   </div>
 </div>
 <ul class="pager">
 
-  <li class="previous"><a href="/read/2020/05/03/%E6%84%9F%E6%82%9F-01.html">&larr; 前一篇</a></li>
+  <li class="previous"><a href="/read/2020/05/03/%E6%8B%96%E5%BB%B6%E7%97%87%E7%AE%A1%E7%90%86.html">&larr; 前一篇</a></li>
 
+
+  <li class="next"><a href="/life/2020/05/24/xuanhong-02.html">后一篇 &rarr;</a></li>
 
 </ul>
 
