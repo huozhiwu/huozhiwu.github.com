@@ -66,41 +66,45 @@
     </small>
   </p> <hr/>
   <div class="post">
-    <h3>1. 错误 configure: error: Please reinstall the pkg-config distribution</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>wget http://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz
+    <h3 id="1-错误-configure-error-please-reinstall-the-pkg-config-distribution">1. 错误 configure: error: Please reinstall the pkg-config distribution</h3>
+
+<pre><code>wget http://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz
 tar -zxvf pkg-config-0.28.tar.gz 
 cd pkg-config-0.28
 ./configure --with-internal-glib
 make &amp;&amp; make install
-</code></pre></div>
-<h3>2. error: Either a previously installed pkg-config or &quot;glib-2.0 &gt;= 2.16&quot; could not be found.</h3>
+</code></pre>
 
+<h3 id="2-error-either-a-previously-installed-pkg-config-or-glib-20--216-could-not-be-found">2. error: Either a previously installed pkg-config or “glib-2.0 &gt;= 2.16” could not be found.</h3>
 <p>Check for pkg-config via $ which pkg-config, if not found you will want to install it:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ curl https://pkg-config.freedesktop.org/releases/pkg-config-0.28.tar.gz -o pkgconfig.tgz
+
+<pre><code>$ curl https://pkg-config.freedesktop.org/releases/pkg-config-0.28.tar.gz -o pkgconfig.tgz
 $ tar -zxf pkgconfig.tgz &amp;&amp; cd pkg-config-0.28
-$ ./configure &amp;&amp; make install
-</code></pre></div>
-<p>If you run into an error like the following:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>configure: error: Either a previously installed pkg-config or &quot;glib-2.0 &gt;= 2.16&quot; could not be found. Please set GLIB_CFLAGS and GLIB_LIBS to the correct values or pass --with-internal-glib to configure to use the bundled copy.
-</code></pre></div>
-<p>run <code>./configure --with-internal-glib &amp;&amp; make install</code></p>
+$ ./configure &amp;&amp; make install If you run into an error like the following:
 
-<h3>3. mac下安装php memecached扩展遇到的问题</h3>
+configure: error: Either a previously installed pkg-config or "glib-2.0 &gt;= 2.16" could not be found. Please set GLIB_CFLAGS and GLIB_LIBS to the correct values or pass --with-internal-glib to configure to use the bundled copy. run `./configure --with-internal-glib &amp;&amp; make install`
+</code></pre>
 
+<h3 id="3-mac下安装php-memecached扩展遇到的问题">3. mac下安装php memecached扩展遇到的问题</h3>
 <p><strong>1. memecached安装依赖libmemcached</strong></p>
 
 <p>直接使用brew安装（因为编译安装依赖别的库，一直编译不过去，所以就没有继续进行），安装路径返回来后运行下面的命令</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>./configure  --with-memcached -with-php-config=/usr/bin/php-config --with-libmemcached-dir=/usr/local/Cellar/libmemcached/1.0.18_1 --enable-memcached
+
+<pre><code>./configure  --with-memcached -with-php-config=/usr/bin/php-config --with-libmemcached-dir=/usr/local/Cellar/libmemcached/1.0.18_1 --enable-memcached
 make
 make install
-</code></pre></div>
-<p><strong>2. 命令行模式下一直报错，<code>PHP Fatal error:  Uncaught Error: Class &#39;Memcached&#39; not found in</code></strong></p>
+</code></pre>
+
+<p><strong>2. 命令行模式下一直报错，<code>PHP Fatal error:  Uncaught Error: Class 'Memcached' not found in</code></strong></p>
 
 <p>这个很奇怪，在浏览器中访问phpinfo，明明安装memcached成功了，但是命令行下找不到，写了一个测试脚本，运行 <code>php test.php</code>,仍然报错，但是在浏览器中运行就不报错。
 后来找到原因，使用 php XX.php 这种方式，默认搜索到 /usr/bin/php 并使用它来执行，而我们真正编译安装的 PHP 则是在这里： /usr/local/bin/php。
 所以运行</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>/usr/local/bin/php test.php
-</code></pre></div>
+
+<pre><code>/usr/local/bin/php test.php
+</code></pre>
+
+
   </div>
 </div>
 <ul class="pager">

@@ -68,42 +68,45 @@
   <div class="post">
     <p>近日因为工作写了些node.js的东西，本来以为自己的js功底还可以，可在开发中发现原来很多js的语法竟然不会。不得不说，之前jquery已经把我惯坏了，导致自己没有深入地去研究js原生语言的一些语法。</p>
 
-<h4>下面就介绍两个方法：</h4>
+<h4 id="下面就介绍两个方法">下面就介绍两个方法：</h4>
 
 <p>第一个方法是keys:</p>
 
 <ul>
-<li>语法：<code>Object.keys(obj)</code></li>
-<li>参数：obj 返回该对象的所有可枚举自身属性的属性名。</li>
+  <li>语法：<code>Object.keys(obj)</code></li>
+  <li>参数：obj 返回该对象的所有可枚举自身属性的属性名。</li>
 </ul>
 
 <p>不啰嗦，上代码：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>var o = {name:&#39;xxx&#39;, url:&#39;http://huozhiwu.github.io&#39;};
+
+<pre><code>var o = {name:'xxx', url:'http://huozhiwu.github.io'};
 alert(Object.keys(o)); //弹出 name url
-</code></pre></div>
+</code></pre>
+
 <p>第二个方法是forEach:</p>
 
 <ul>
-<li>语法：<code>array.forEach(callback[, thisArg])</code></li>
-<li>参数：<strong>callback</strong><br>
-在数组每一项上执行的函数，接收三个参数：<br>
-<strong>currentValue</strong><br>
-当前项（指遍历时正在被处理那个数组项）的值。<br>
-<strong>index</strong><br>
-当前项的索引（或下标）。<br>
-<strong>array</strong><br>
-数组本身。<br>
-<strong>thisArg</strong><br>
+  <li>语法：<code>array.forEach(callback[, thisArg])</code></li>
+  <li>参数：<strong>callback</strong><br />
+在数组每一项上执行的函数，接收三个参数：<br />
+<strong>currentValue</strong><br />
+当前项（指遍历时正在被处理那个数组项）的值。<br />
+<strong>index</strong> <br />
+当前项的索引（或下标）。<br />
+<strong>array</strong><br />
+数组本身。<br />
+<strong>thisArg</strong><br />
 可选参数。用来当作callback 函数内this的值的对象。</li>
 </ul>
 
 <p>代码如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>var o = {name:&#39;xxx&#39;, url:&#39;http://huozhiwu.github.io&#39;};
+
+<pre><code>var o = {name:'xxx', url:'http://huozhiwu.github.io'};
 
 Object.keys(o).forEach(function(k){
-    console.log(k+&#39;:&#39;+&#39;&quot;&#39;+o[k]+&#39;&quot;&#39;);
-}) //name:&quot;xxx&quot; url:&quot;http://huozhiwu.github.io&quot; 
-</code></pre></div>
+	console.log(k+':'+'"'+o[k]+'"');
+}) //name:"xxx" url:"http://huozhiwu.github.io" 
+</code></pre>
 <p>介绍完毕。</p>
 
   </div>

@@ -66,40 +66,42 @@
     </small>
   </p> <hr/>
   <div class="post">
-    <h3>一些课后习题</h3>
+    <p>###一些课后习题</p>
 
-<h5>练习2-9. 在求对二的补码时，表达式 x&amp;=(x-1)可以删除x中最右边值为1的一个二进制位。请解释这样做的道理。用这一方法重写bitcount函数，以加快其执行的速度。</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>    #include &lt;stdio.h&gt;
-    #include &lt;stdlib.h&gt;
-    int main(int argc, char *argv[])
-    {
-        int x = atoi(argv[1]);
-        int y = x;
-        int count = 0;
-        while(y != 0){
-            y&amp;=y-1;
-            count++;
-        }
-        printf(&quot;bitcount(%d) = %d\n&quot;, x,count);
-    }
-</code></pre></div>
-<h5>练习2-10. 重新编写将大写字母转换为小写字母的函数lower，并用条件表达式替代其中的if-else结构。</h5>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>#include &lt;stdio.h&gt;
+<p>#####练习2-9. 在求对二的补码时，表达式 x&amp;=(x-1)可以删除x中最右边值为1的一个二进制位。请解释这样做的道理。用这一方法重写bitcount函数，以加快其执行的速度。</p>
+<pre><code>	#include &lt;stdio.h&gt;
+	#include &lt;stdlib.h&gt;
+	int main(int argc, char *argv[])
+	{
+    	int x = atoi(argv[1]);
+    	int y = x;
+    	int count = 0;
+    	while(y != 0){
+        	y&amp;=y-1;
+        	count++;
+    	}
+    	printf("bitcount(%d) = %d\n", x,count);
+	}
+</code></pre>
+<p>#####练习2-10. 重新编写将大写字母转换为小写字母的函数lower，并用条件表达式替代其中的if-else结构。</p>
+
+<pre><code>#include &lt;stdio.h&gt;
 char *lower(char *s);
 int main(int argc, char *argv[]){
     char *s = argv[1];
     lower(s);
-    printf(&quot;\n&quot;);
+    printf("\n");
 }
 char *lower(char *s){
     while(*s != 0){
         int ch = *s;
-        printf(&quot;%c&quot;, ((ch &gt;= &#39;A&#39;) &amp;&amp; (ch &lt;= &#39;Z&#39;)) ? ch += 32 : ch);
+        printf("%c", ((ch &gt;= 'A') &amp;&amp; (ch &lt;= 'Z')) ? ch += 32 : ch);
         s++;
     }
     return s;
 }
-</code></pre></div>
+</code></pre>
+
   </div>
 </div>
 <ul class="pager">

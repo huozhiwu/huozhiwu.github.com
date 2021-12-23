@@ -66,27 +66,33 @@
     </small>
   </p> <hr/>
   <div class="post">
-    <h2>简单记录一下设计模式的五大原则。</h2>
+    <h2 id="简单记录一下设计模式的五大原则">简单记录一下设计模式的五大原则。</h2>
 
-<h3>1.单一职责原则（<code>SRP Single Persponsibility Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>在《敏捷软件开发》中，把“职责”定义为“变化的原因”，也就是说，就一个类而言，应该只有一个引起它变化的原因。说的简单一点，就是怎样设计类以及类的方法界定的问题。这个问题是普遍存在的，比如说在MVC框架中，很多人会有这样地疑惑，对于表单插入数据库字段过滤与安全检查应该是放在control层处理还是model层处理，这类问题都可以归到单一职责的范围。  
+<h3 id="1单一职责原则srp-single-persponsibility-principle">1.单一职责原则（<code>SRP Single Persponsibility Principle</code>）</h3>
+
+<pre><code>在《敏捷软件开发》中，把“职责”定义为“变化的原因”，也就是说，就一个类而言，应该只有一个引起它变化的原因。说的简单一点，就是怎样设计类以及类的方法界定的问题。这个问题是普遍存在的，比如说在MVC框架中，很多人会有这样地疑惑，对于表单插入数据库字段过滤与安全检查应该是放在control层处理还是model层处理，这类问题都可以归到单一职责的范围。  
 单一职责原则有两个含义：一个是避免相同职责分散到不同的类中，另一个是避免一个类承担太多职责。  
 简单来说，各司其职，不相互推诿，为避免某人权力过大，则需要分权并且划分职责。  
-</code></pre></div>
-<h3>2.接口隔离原则（<code>ISP Interface Segregation Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>接口隔离原则表明客户端不应该被强迫实现一些他们不会使用的接口，应该把胖接口中的方法分组，然后用多个接口代替。每个接口服务于不同的子模块。  
+</code></pre>
+
+<h3 id="2接口隔离原则isp-interface-segregation-principle">2.接口隔离原则（<code>ISP Interface Segregation Principle</code>）</h3>
+<pre><code>接口隔离原则表明客户端不应该被强迫实现一些他们不会使用的接口，应该把胖接口中的方法分组，然后用多个接口代替。每个接口服务于不同的子模块。  
 过于臃肿的接口设计是对接口的污染。所谓接口污染就是为接口添加不必要地职责，如果开发人员在接口增加一个新功能的主要目的只是为了减少接口实现类的数目，则此设计将导致接口被不断的“污染”并“变胖”。
-</code></pre></div>
-<h3>3.开放-封闭原则（<code>OCP Open-Close Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>开放封闭原则大意就是要求开发人员在不修改系统中现有功能代码（源代码或者二进制代码）的前提下，实现对应用系统的软件功能扩展。
-</code></pre></div>
-<h3>4.里氏替换原则（<code>LSP Liskov Subsitution Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>里氏替换原则指出，子类型必须能够替换掉他们的父类型，并出现在父类能够出现的任何地方。LSP主要是针对继承的设计原则。
-</code></pre></div>
-<h3>5.依赖倒置原则（<code>DIP Dependence Inversion Principle</code>）</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>1. 上层模块不应该依赖于下层模块，他们共同依赖于一个抽象（父类不能依赖子类，他们都要依赖抽象类）。  
+</code></pre>
+
+<h3 id="3开放-封闭原则ocp-open-close-principle">3.开放-封闭原则（<code>OCP Open-Close Principle</code>）</h3>
+<pre><code>开放封闭原则大意就是要求开发人员在不修改系统中现有功能代码（源代码或者二进制代码）的前提下，实现对应用系统的软件功能扩展。
+</code></pre>
+
+<h3 id="4里氏替换原则lsp-liskov-subsitution-principle">4.里氏替换原则（<code>LSP Liskov Subsitution Principle</code>）</h3>
+<pre><code>里氏替换原则指出，子类型必须能够替换掉他们的父类型，并出现在父类能够出现的任何地方。LSP主要是针对继承的设计原则。
+</code></pre>
+
+<h3 id="5依赖倒置原则dip-dependence-inversion-principle">5.依赖倒置原则（<code>DIP Dependence Inversion Principle</code>）</h3>
+<pre><code>1. 上层模块不应该依赖于下层模块，他们共同依赖于一个抽象（父类不能依赖子类，他们都要依赖抽象类）。  
 2. 抽象不能依赖于具体，具体应该要依赖于抽象。
-</code></pre></div>
+</code></pre>
+
   </div>
 </div>
 <ul class="pager">

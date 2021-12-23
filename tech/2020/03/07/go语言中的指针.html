@@ -67,24 +67,28 @@
   </p> <hr/>
   <div class="post">
     <p>指针不参与运算，无法像C++或者C一样，用指针++的操作可以读出下一个元素。</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">2</span>
-<span class="kd">var</span> <span class="nx">p</span> <span class="o">*</span><span class="kt">int</span>
-<span class="nx">p</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">a</span>
-<span class="o">*</span><span class="nx">p</span> <span class="p">=</span> <span class="o">*</span><span class="nx">p</span> <span class="o">+</span><span class="mi">10</span>
-<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;p =&quot;</span><span class="p">,</span><span class="o">*</span><span class="nx">p</span><span class="p">)</span> <span class="c1">//输出12</span>
-</code></pre></div><div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">func</span> <span class="nx">change</span><span class="p">(</span><span class="nx">n1</span> <span class="o">*</span><span class="kt">int</span><span class="p">,</span><span class="nx">n2</span> <span class="o">*</span><span class="kt">int</span><span class="p">){</span>
-  <span class="o">*</span><span class="nx">n1</span><span class="o">++</span>
-  <span class="o">*</span><span class="nx">n2</span><span class="o">++</span>
-<span class="p">}</span>
 
-<span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
-  <span class="nx">num1</span><span class="o">:=</span><span class="mi">10</span>
-  <span class="nx">num2</span><span class="o">:=</span><span class="mi">20</span>
-  <span class="nx">change</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">num1</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">num2</span><span class="p">)</span> <span class="c1">//这样做是值传递</span>
-  <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
+<pre><code class="language-go">var a int = 2
+var p *int
+p = &amp;a
+*p = *p +10
+fmt.Println("p =",*p) //输出12
+</code></pre>
+<pre><code class="language-go">func change(n1 *int,n2 *int){
+  *n1++
+  *n2++
+}
+
+func main(){
+  num1:=10
+  num2:=20
+  change(&amp;num1,&amp;num2) //这样做是值传递
+  fmt.Println(num1, num2)
+}
+</code></pre>
+
 <p>go语言函数只有值传递一种方式，没有引用传递。</p>
+
 
   </div>
 </div>

@@ -66,30 +66,30 @@
     </small>
   </p> <hr/>
   <div class="post">
-    <h3>1.项目初始化</h3>
-
+    <h3 id="1项目初始化">1.项目初始化</h3>
 <p>首先，新建一个symfony2的项目，项目名称就叫 mypro，在命令行模式下运行 <code>symfony new mypro lts</code>，这里加上lts意思是选择一个长期支持的版本。（具体可以参照 <a href="http://symfony.cn/docs/quick_tour/the_big_picture.html" target="_blank">文档</a>）</p>
 
 <p>可能会出现各种安装错误，因为symfony需要依赖一些php的扩展。如果安装不上，按照提示重新编译一下php就可以了。</p>
 
-<h3>2.建立bundle（因为习惯使用yml，所以下面都用yml进行配置）</h3>
-
+<h3 id="2建立bundle因为习惯使用yml所以下面都用yml进行配置">2.建立bundle（因为习惯使用yml，所以下面都用yml进行配置）</h3>
 <p>在mypro目录下运行命令 <code>php app/console generate:bundle</code>
 交互的内容按照下面的格式和名称：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ php app/console generate:bundle
+
+<pre><code>$ php app/console generate:bundle
 Bundle namespace: BlogBundle
 Bundle name [BlogBundle]: BlogBundle
 Target directory [/home/tcl/www/mypro/src]: /home/tcl/www/mypro/src
 Configuration format (yml, xml, php, or annotation): yml
 Do you want to generate the whole directory structure [no]? yes
 Do you confirm generation [yes]? yes
-</code></pre></div>
+</code></pre>
+
 <p>现在你会看到在mypro/src目录下生成了一个BlogBundle的文件夹，并且生成了一部分的目录。</p>
 
-<h3>3.生成实体(entity)</h3>
-
+<h3 id="3生成实体entity">3.生成实体(entity)</h3>
 <p>继续在mypro目录下运行命令 <code>php app/console doctrine:generate:entity</code></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>$ php app/console doctrine:generate:entity
+
+<pre><code>$ php app/console doctrine:generate:entity
 The Entity shortcut name: BlogBundle:Blog
 Configuration format (yml, xml, php, or annotation) [annotation]: yml
 Instead of starting with a blank entity, you can add some fields now.
@@ -100,34 +100,32 @@ boolean, integer, smallint, bigint, string, text, datetime, datetimetz,
 date, time, decimal, float, blob, guid.
 
 New field name (press &lt;return&gt; to stop adding fields: （可以在这里直接配置数据库字段，也可以后期添加。
-直接配置的方法参考&lt;a href=&quot;http://www.open-open.com/lib/view/open1419844678093.html&quot; target=&quot;_blank&quot;&gt;这篇文档&lt;/a&gt;。）
+直接配置的方法参考&lt;a href="http://www.open-open.com/lib/view/open1419844678093.html" target="_blank"&gt;这篇文档&lt;/a&gt;。）
 Do you want to generate an empty repository class [no]? 
-You are going to generate a &quot;BlogBundle:Blog&quot; Doctrine2 entity
-using the &quot;yml&quot; format.
+You are going to generate a "BlogBundle:Blog" Doctrine2 entity
+using the "yml" format.
 Do you confirm generation [yes]? 
 Generating the entity code: OK
-（后面的选项就一直回车就可以了）
-</code></pre></div>
-<p>这个时候在 mypro/src/BlogBundle/ 目录下已经生成了一个Entity的目录，并且Entity目录中存在一个Blog.php的文件。</p>
-
-<h3>4.生成数据表</h3>
-
-<p>上述的操作只是在项目中生成了一些文件，并没有对数据库进行任何操作。接着我们就要进行数据库的操作。
-    首先，修改配置文件 mypro/app/config/parameters.yml文件，修改成对应的数据库字段。
-    然后，在mypro目录下运行命令 <code>php app/console doctrine:database:create</code>。</p>
+（后面的选项就一直回车就可以了） 这个时候在 mypro/src/BlogBundle/ 目录下已经生成了一个Entity的目录，并且Entity目录中存在一个Blog.php的文件。 ### 4.生成数据表 上述的操作只是在项目中生成了一些文件，并没有对数据库进行任何操作。接着我们就要进行数据库的操作。
+首先，修改配置文件 mypro/app/config/parameters.yml文件，修改成对应的数据库字段。
+然后，在mypro目录下运行命令 `php app/console doctrine:database:create`。
+</code></pre>
 
 <p>返回： <code>Created database for connection named `DATABASENAME`</code>
 最后，继续运行命令 <code>php app/console doctrine:schema:create</code>。
 返回：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>Creating database schema...
+
+<pre><code>Creating database schema...
 Database schema created successfully!
-</code></pre></div>
+</code></pre>
+
 <p>这个时候在数据中已经生成了一个smyfony的数据库，并且里面有一张只包含id的Blog表。这就表示数据表创建成功了。</p>
 
-<h3>5.重新生成实体</h3>
+<h3 id="5重新生成实体">5.重新生成实体</h3>
 
 <p>首先，修改 <strong>mypro/src/BlogBundle/Resources/config/doctrine/Blog.orm.yml</strong> 如下面的代码（注意缩进）：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>  BlogBundle\Entity\Blog:
+
+<pre><code>  BlogBundle\Entity\Blog:
     type: entity
     table: null
     repositoryClass: BlogBundle\Entity\BlogRepository
@@ -148,32 +146,36 @@ Database schema created successfully!
             type: string
             length: 200
     lifecycleCallbacks: {  }
-</code></pre></div>
+</code></pre>
+
 <p>然后在mypro目录下运行命令 <code>php app/console doctrine:generate:entities BlogBundle</code> ，返回：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>&gt; Generating entities for bundle &quot;BlogBundle&quot;
+
+<pre><code>&gt; Generating entities for bundle "BlogBundle"
 &gt; backing up Blog.php to Blog.php~
 &gt; generating BlogBundle\Entity\Blog
-</code></pre></div>
+</code></pre>
+
 <p>但是这时候数据库中的字段仍然没有改变，所以继续运行命令 <code>php app/console doctrine:schema:update --force</code> ，返回：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>Updating database schema...
-Database schema updated successfully! &quot;1&quot; queries were executed
-</code></pre></div>
+
+<pre><code>Updating database schema...
+Database schema updated successfully! "1" queries were executed
+</code></pre>
+
 <p>这时候数据库的字段已经改变。</p>
-
-<h3>6.生成curd方法</h3>
-
+<h3 id="6生成curd方法">6.生成curd方法</h3>
 <p>最后，最重要的一步来了，这步很简单了，在mypro目录下运行命令 <code>php app/console generate:doctrine:crud</code></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span> Welcome to the Doctrine2 CRUD generator
+
+<pre><code> Welcome to the Doctrine2 CRUD generator
  The Entity shortcut name: BlogBundle:Blog
- Do you want to generate the &quot;write&quot; actions [no]? yes
+ Do you want to generate the "write" actions [no]? yes
  Configuration format (yml, xml, php, or annotation) [annotation]: yml
  Routes prefix [/blog]:
- Do you confirm generation [yes]?   
+ Do you confirm generation [yes]? 	
  Confirm automatic update of the Routing [yes]? 
  (后面的一直回车就可以了)
-</code></pre></div>
-<h3>7.查看结果</h3>
+</code></pre>
 
+<h3 id="7查看结果">7.查看结果</h3>
 <p>ok，现在curd方法已经生成了，可以直接访问 http://servername/blog 查看自动生成的后台了。如果不知道如何运行服务可以参考这篇<a href="http://symfony.com/doc/current/quick_tour/the_big_picture.html" target="_blank">文档</a>。
 自动生成的管理后台因为没有样式的原因所以有点丑陋，以后会继续讲述如何增加样式。</p>
 

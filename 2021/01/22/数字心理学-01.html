@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Google资深工程师深度讲解Go语言(读书笔记)</title>
+<title>数字心理学 01</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="不着一相">
 <link rel="shortcut icon " type="images/x-icon" href="/static/favicon.ico">
@@ -59,113 +59,46 @@
 
       <div class="container">
         <div id="article">
-  <div class="article-title">Google资深工程师深度讲解Go语言(读书笔记)</div>
+  <div class="article-title">数字心理学 01</div>
   <p class="meta">
     <small>
-      &nbsp;<i class="fa fa-calendar-o"></i> 03 May 2020
+      &nbsp;<i class="fa fa-calendar-o"></i> 22 Jan 2021
     </small>
   </p> <hr/>
   <div class="post">
-    <p>###第一章 课程介绍 1-1</p>
+    <p>大家好，欢迎来到数字心理学的学习群。我先简单介绍一下自己，我姓唐，唐朝的唐，是一名来自于上海的山东人。
+我目前就职于一家教育科技公司，属于理工男。</p>
 
-<p>之前看了无闻的go语言教程，主意是侧重于讲语法，很多地方不是特别清楚。后来准备找到了这个资源——<a href="https://geektutu.com/post/gee.html">7天用Go从零实现Web框架Gee教程</a>，准备实践一下，但是写到第三天的时候，发现有很多知识需要补充。于是又找到目前这个课程。</p>
+<p>我发现我们家的笑声逐渐在减少，我每天回到家。</p>
 
-<p>视频发布的作者是google的工程师，讲解的非常到位。第一章主要介绍了课程大纲：</p>
+<p>推崇丁丁老师，果证。</p>
 
-<ol>
-  <li>基本语法：变量，选择，循环，指针，数组，容器。</li>
-  <li>面向接口：结构体，duck typing的概念，组合的思想。</li>
-  <li>函数式编程：闭包的概念，多样的例题。</li>
-  <li>工程化：资源管理，错误处理，测试和文档，性能调优</li>
-  <li>并发编程：goroutine和channel，理解调度器，多样的例题</li>
-  <li>实战项目：从0开始，自主搭建分布式爬虫。</li>
-</ol>
+<p>推崇徐姐</p>
 
-<p>###第二章</p>
+<p>小徐</p>
 
-<p>2-1 go语言的变量名，名称写在前面，类型写在后面。why？先想到名字，后想到类型，同时对与混合类型有帮助。
-函数外面声明变量必须用var关键字，变量只有包内的变量。可以用这种格式声明</p>
+<p>明德</p>
 
-<pre><code>var (
-    aa = true
-    bb = "kkkkk"
-)
-</code></pre>
+<p>了凡</p>
 
-<p>2-2 内建变量类型</p>
+<p>卓越父母</p>
 
-<ol>
-  <li>bool string</li>
-  <li>(u)int (u)int8 (u)int16 (u)int32 (u)int64 (u)intptr</li>
-  <li>byte rune</li>
-  <li>float32, float64, complex32, complex64</li>
-</ol>
-
-<p>2-3 枚举类型</p>
-
-<p>​	go 没有枚举的关键字，一般都是用 const来定义</p>
-
-<pre><code class="language-go">const (
-	cpp
-	java
-	python
-	javascript
-)
-</code></pre>
-
-<p>iota的用法，从0开始递增，可以使用公式。比如说</p>
-
-<pre><code class="language-go">const(
-		B =  1 &lt;&lt; (10 * iota)
-		KB
-		MB
-		GB
-		TB
-	)
-	fmt.Println(B, KB, MB, GB, TB)
-</code></pre>
-
-<p>2-4 条件语句</p>
-
-<p>if判断，支持条件内判断。注意变量的生效区间。</p>
-
-<pre><code>const filename = "abc.txt"
-	if content, err := ioutil.ReadFile(filename); err != nil{
-		fmt.Println(err)
-	}else{
-		fmt.Printf("%s", content)
-	}
-</code></pre>
-
-<p>switch 语句，case下默认是有break的，除非使用fallthrough。</p>
-
-<p><code>func eval(a, b int, op string) int{
-	var result int
-	switch op{
-		case "+": result = a+b
-		case "-": result = a-b
-		case "*": result = a*b
-		case "/": result = a/b
-		default:
-			panic("unsuport operator:" + op)
-	}
-	return result
-}
-</code></p>
-
-<p>panic中断执行</p>
-
-<p>2-5循环</p>
+<p>开场白
+建立关系
+需求挖掘
+理念植入
+异议处理
+确认邀约</p>
 
 
   </div>
 </div>
 <ul class="pager">
 
-  <li class="previous"><a href="/read/2020/05/03/%E6%8B%96%E5%BB%B6%E7%97%87%E7%AE%A1%E7%90%86.html">&larr; 前一篇</a></li>
+  <li class="previous"><a href="/life/2020/11/06/xuanhong-04.html">&larr; 前一篇</a></li>
 
 
-  <li class="next"><a href="/life/2020/05/24/xuanhong-02.html">后一篇 &rarr;</a></li>
+  <li class="next"><a href="/2021/02/04/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0.html">后一篇 &rarr;</a></li>
 
 </ul>
 

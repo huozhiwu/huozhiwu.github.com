@@ -66,22 +66,24 @@
     </small>
   </p> <hr/>
   <div class="post">
-    <h4>1. 解决.gitignore无法忽略的文件以及自身被忽略的方法</h4>
+    <h4 id="1-解决gitignore无法忽略的文件以及自身被忽略的方法">1. 解决.gitignore无法忽略的文件以及自身被忽略的方法</h4>
 
 <p>.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。
 正确的做法是在每个clone下来的仓库中手动设置不要检查特定文件的更改情况。</p>
 
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>git update-index --assume-unchanged PATH/FILE</code></pre></figure>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh">git update-index <span class="nt">--assume-unchanged</span> PATH/FILE</code></pre></figure>
 
 <p>在PATH/FILE处输入要忽略的文件。</p>
 
 <p>但是 git checkout . 会将文件恢复。</p>
 
-<h4>2. 递归删除指定目录下的.git文件</h4>
+<h4 id="2-递归删除指定目录下的git文件">2. 递归删除指定目录下的.git文件</h4>
 
-<p>递归删除指定目录下的 .git 文件， </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>find . -name .git | xargs rm -fr
-</code></pre></div>
+<p>递归删除指定目录下的 .git 文件，</p>
+
+<pre><code>find . -name .git | xargs rm -fr
+</code></pre>
+
   </div>
 </div>
 <ul class="pager">
